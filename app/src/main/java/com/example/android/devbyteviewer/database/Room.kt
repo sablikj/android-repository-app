@@ -24,6 +24,9 @@ import androidx.room.*
 interface VideoDao {
     @Query("select * from databasevideo")
     fun getVideos(): LiveData<List<DatabaseVideo>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll( videos: List<DatabaseVideo>)
 }
 
 @Database(entities = [DatabaseVideo::class], version = 1)
